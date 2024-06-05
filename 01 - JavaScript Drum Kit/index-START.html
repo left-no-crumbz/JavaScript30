@@ -11,40 +11,40 @@
 
   <div class="keys">
     <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">clap</span>
+      <kbd data-key="65">A</kbd>
+      <span class="sound" data-key="65">clap</span>
     </div>
     <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
+      <kbd data-key="83">S</kbd>
+      <span class="sound" data-key="83">hihat</span>
     </div>
     <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
+      <kbd data-key="68">D</kbd>
+      <span class="sound" data-key="68">kick</span>
     </div>
     <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
+      <kbd data-key="70">F</kbd>
+      <span class="sound" data-key="70">openhat</span>
     </div>
     <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
+      <kbd data-key="71">G</kbd>
+      <span class="sound" data-key="71">boom</span>
     </div>
     <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
+      <kbd data-key="72">H</kbd>
+      <span class="sound" data-key="72">ride</span>
     </div>
     <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
+      <kbd data-key="74">J</kbd>
+      <span class="sound" data-key="74">snare</span>
     </div>
     <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
+      <kbd data-key="75">K</kbd>
+      <span class="sound" data-key="75">tom</span>
     </div>
     <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
+      <kbd data-key="76">L</kbd>
+      <span class="sound" data-key="76">tink</span>
     </div>
   </div>
 
@@ -59,7 +59,15 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  const keys = document.querySelector(".keys");
+  const audios = document.querySelectorAll("audio");
 
+  keys.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target.classList.contains("key") || target.classList.contains("sound")  || target.tagName === "KBD") {
+        Array.from(audios).filter(audio => audio.dataset.key === target.dataset.key)[0].play();
+      }
+  });
 </script>
 
 
